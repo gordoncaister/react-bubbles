@@ -11,11 +11,20 @@ const Login = () => {
   const [password, setPassword, handlePassword] = useInput("");
 
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axiosWithAuth()
+    .post("/api/login",{username:username,password:password})
+    .then(res =>{
+      console.log(res)
+    })
+
+  }
 
   return (
     <>
       <h1>Welcome to the Bubble App!</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           label="Username"
           type="text"
@@ -33,6 +42,8 @@ const Login = () => {
           value={password}
           onChange={handlePassword}
         />
+        <br/>
+        <button>Submit</button>
       </form>
     </>
   );
