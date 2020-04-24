@@ -51,6 +51,10 @@ const ColorList = ({ colors, updateColors }) => {
     // make a delete request to delete this color
   };
 
+  const saveColor = color => {
+    console.log("hello from color",color)
+  }
+
   return (
     <div className="colors-wrap">
       <p>colors</p>
@@ -73,6 +77,34 @@ const ColorList = ({ colors, updateColors }) => {
             />
           </li>
         ))}
+        <form onSubmit={saveColor}>
+          <legend>Add a color</legend>
+          <label>
+            color name:
+            <input
+              onChange={e =>
+                setColorToEdit({ ...colorToEdit, color: e.target.value })
+              }
+              value={colorToEdit.color}
+            />
+          </label>
+          <label>
+            hex code:
+            <input
+              onChange={e =>
+                setColorToEdit({
+                  ...colorToEdit,
+                  code: { hex: e.target.value }
+                })
+              }
+              value={colorToEdit.code.hex}
+            />
+          </label>
+          <div className="button-row">
+            <button type="submit">save</button>
+            <button onClick={() => setEditing(false)}>cancel</button>
+          </div>
+        </form>
       </ul>
       {editing && (
         <form onSubmit={saveEdit}>
@@ -106,6 +138,7 @@ const ColorList = ({ colors, updateColors }) => {
       )}
       <div className="spacer" />
       {/* stretch - build another form here to add a color */}
+      
     </div>
   );
 };
