@@ -18,7 +18,7 @@ const Login = (props) => {
     .then(res =>{
       console.log(res)
       localStorage.setItem('token',res.data.payload)
-      props.history.push('/')
+      props.history.push('/bubbles')
     })
     .catch(err => console.log(err))
 
@@ -48,6 +48,8 @@ const Login = (props) => {
         <br/>
         <button>Submit</button>
       </form>
+
+      {/* <button onClick={localStorage.clear()}>Clear localStorage</button> */}
     </>
   );
 };
